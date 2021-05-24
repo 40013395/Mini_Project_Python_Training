@@ -1,6 +1,6 @@
 """
 Name: Grocery Store Accounts Management
-Author: Deepak Sahoo
+Author: Deepak
 Date: 24/05/2020
 """
 
@@ -20,11 +20,11 @@ def add_customer():
         Operation:
         Adds customer to database
     """
-    cust_id = input("enter the id number")
-    cust_name = input("enter the customer name")
-    cust_num = input("enter the customer number")
-    cust_init = int(input("enter the initial amount"))
-    d.update({cust_id: [cust_name, cust_num, cust_init]})
+    customer_id = input("enter the id number")
+    customer_name = input("enter the customer name")
+    customer_num = input("enter the customer number")
+    customer_init = int(input("enter the initial amount"))
+    d.update({customer_id: [customer_name, customer_num, customer_init]})
 
 
 def payment():
@@ -39,16 +39,16 @@ def payment():
             Operation:
             Operates credits and debits
         """
-    cust_id = input("enter the id number of the customer")
+    customer_id = input("enter the id number of the customer")
     for i in d:
-        if i == cust_id:
-            option = int(input("1.Consumer pay\n2.Consumer Credit"))
-            if option == 1:
+        if i == customer_id:
+            payment_option = int(input("1.Consumer pay\n2.Consumer Credit"))
+            if payment_option == 1:
                 upd_amt = int(input("Enter the amount"))
-                d[cust_id][2] = d[cust_id][2] - upd_amt
-            elif option == 2:
+                d[customer_id][2] = d[customer_id][2] - upd_amt
+            elif payment_option == 2:
                 upd_amt = int(input("Enter the amount"))
-                d[cust_id][2] = d[cust_id][2] + upd_amt
+                d[customer_id][2] = d[customer_id][2] + upd_amt
             else:
                 print("Enter a valid input")
                 payment()
@@ -68,16 +68,16 @@ def edit_customer():
             Operation:
             Edits the customer details
         """
-    cust_id = input("enter the id number of the customer")
+    customer_id = input("enter the id number of the customer")
     for i in d:
-        if i == cust_id:
-            option = int(input("1.Change Name\n2.Change Number"))
-            if option == 1:
+        if i == customer_id:
+            edit_option = int(input("1.Change Name\n2.Change Number"))
+            if edit_option == 1:
                 upd_name = input("Enter the new name")
-                d[cust_id][0] = upd_name
-            elif option == 2:
+                d[customer_id][0] = upd_name
+            elif edit_option == 2:
                 upd_num = input("Enter the new number")
-                d[cust_id][1] = upd_num
+                d[customer_id][1] = upd_num
             else:
                 print("Enter a valid input")
                 edit_customer()
@@ -97,15 +97,15 @@ def view_all():
             Operation:
             View all customers with their details from the database
         """
-    option = 0
+    customer_count = 0
     for i in d:
-        option = option + 1
+        customer_count = customer_count + 1
         print("Customer Id: " + i)
         print("Customer Name: " + d[i][0])
         print("Customer Number: " + d[i][1])
         print("Amount to be paid: " + str(d[i][2]))
         print("\n")
-    if option == 0:
+    if customer_count == 0:
         print("No customers found")
 
 
@@ -116,14 +116,14 @@ print("3.Edit customer details\n")
 print("4.View all customers")
 
 while 1:
-    option = int(input())
-    if option == 1:
+    input_option = int(input())
+    if input_option == 1:
         add_customer()
-    elif option == 2:
+    elif input_option == 2:
         payment()
-    elif option == 3:
+    elif input_option == 3:
         edit_customer()
-    elif option == 4:
+    elif input_option == 4:
         view_all()
     else:
         print("Enter a valid input")
