@@ -4,7 +4,7 @@ Author: Deepak
 Date: 24/05/2020
 """
 
-
+import sys
 d = []
 
 
@@ -56,10 +56,10 @@ class Customer:
             Edit customer details
         """
         if input_option == 1:
-            upd_name = input("Enter the new name")
+            upd_name = input("Enter the new name:")
             self.customer_name = upd_name
         elif input_option == 2:
-            upd_num = input("Enter the new number")
+            upd_num = input("Enter the new number:")
             self.customer_num = upd_num
 
 
@@ -183,7 +183,11 @@ if __name__ == "__main__":
         else:
             print("Enter a valid input")
             continue
-        proceed_option = input("Do you wish to continue ? (Y / N): ")
-        if proceed_option != "Y":
-            print(" Thank you ")
-            break
+        while 1:
+            proceed_option = input("Do you wish to continue ? (Y / N): ")
+            if proceed_option in ("Y", "N"):
+                if proceed_option == "N":
+                    print(" Thank you ")
+                    sys.exit()
+                break
+            print("Enter a valid option")
