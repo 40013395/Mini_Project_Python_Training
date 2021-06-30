@@ -41,7 +41,6 @@ class Customer:
         if input_option == 1:
             self.customer_init = self.customer_init - amt
         elif input_option == 2:
-            amt = int(input("Enter the amount"))
             self.customer_init = self.customer_init + amt
 
     def edit_customer(self, input_option):
@@ -90,6 +89,7 @@ class LoyalCustomer(Customer):
         """
         self.customer_init = self.customer_init - amount
 
+
 class LateCustomer(Customer):
     """Summary or Description of the class
 
@@ -116,6 +116,7 @@ class LateCustomer(Customer):
         """
         self.customer_init = self.customer_init + amount
 
+
 if __name__ == "__main__":
     while 1:
         print(" Deepak's Grocery Stores Customer Accounting System")
@@ -125,11 +126,11 @@ if __name__ == "__main__":
         print("4.View all customers")
         choice = int(input())
         if choice == 1:
-            option = int(input("1. Regular\n2. Loyal\n3.Late\n"))
-            customer_id = input("enter the id number")
-            customer_name = input("enter the customer name")
-            customer_num = input("enter the customer number")
-            customer_init = int(input("enter the initial amount"))
+            option = int(input("1. Regular\n2. Loyal\n3. Late\n"))
+            customer_id = input("enter the id number: ")
+            customer_name = input("enter the customer name: ")
+            customer_num = input("enter the customer number: ")
+            customer_init = int(input("enter the initial amount: "))
             if option == 1:
                 c = Customer(customer_id, customer_name, customer_num, customer_init)
             elif option == 2:
@@ -140,24 +141,32 @@ if __name__ == "__main__":
                 c.penalty(500)
             d.append(c)
         elif choice == 2:
-            ci = input("enter the id number of the customer")
+            ci = input("enter the id number of the customer: ")
             CC = 0
             for i in d:
                 if i.customer_id == ci:
                     CC = CC + 1
-                    x = int(input("1.Consumer pay\n2.Consumer Credit"))
-                    upd_amt = int(input("Enter the amount"))
-                    i.payment(upd_amt, x)
+                    while 1:
+                        x = int(input("1.Consumer pay\n2.Consumer Credit\n"))
+                        if x in (1, 2):
+                            upd_amt = int(input("Enter the amount: "))
+                            i.payment(upd_amt, x)
+                            break
+                        print("Enter a valid option")
             if CC == 0:
                 print("No customers found")
         elif choice == 3:
-            ci = input("enter the id number of the customer")
+            ci = input("enter the id number of the customer: ")
             CC = 0
             for i in d:
                 if i.customer_id == ci:
                     CC = CC + 1
-                    x = int(input("1.Change Name\n2.Change Number"))
-                    i.edit_customer(x)
+                    while 1:
+                        x = int(input("1.Change Name\n2.Change Number\n"))
+                        if x in (1, 2):
+                            i.edit_customer(x)
+                            break
+                        print("Enter a valid option")
             if CC == 0:
                 print("No customers found")
         elif choice == 4:
@@ -174,18 +183,7 @@ if __name__ == "__main__":
         else:
             print("Enter a valid input")
             continue
-        with open(r"C:\Users\TRAINING\Desktop\input.txt", 'w+') as f:
-            for i in d:
-                f.writelines("Customer Id: " + i.customer_id)
-                f.writelines("\n")
-                f.writelines("Customer Name: " + i.customer_name)
-                f.writelines("\n")
-                f.writelines("Customer Number: " + i.customer_num)
-                f.writelines("\n")
-                f.writelines("Amount to be paid: " + str(i.customer_init))
-                f.writelines("\n\n")
-            f.close()
-        proceed_option = input("Do you wish to continue ? (Y / N)")
-        if proceed_option == "N":
-            print(" Deepak's Grocery Stores Customer Accounting System")
+        proceed_option = input("Do you wish to continue ? (Y / N): ")
+        if proceed_option != "Y":
+            print(" Thank you ")
             break
