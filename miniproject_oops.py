@@ -119,12 +119,16 @@ class LateCustomer(Customer):
 
 if __name__ == "__main__":
     while 1:
-        print(" Deepak's Grocery Stores Customer Accounting System")
+        print("\n* Deepak's Grocery Stores Customer Accounting System *\n")
         print("1.Add a customer")
         print("2.Payment by Customer")
         print("3.Edit customer details")
         print("4.View all customers")
-        choice = int(input())
+        try:
+            choice = int(input())
+        except ValueError:
+            print("Enter an integer value according to the menu's index")
+            continue
         if choice == 1:
             option = int(input("1. Regular\n2. Loyal\n3. Late\n"))
             customer_id = input("enter the id number: ")
@@ -181,7 +185,7 @@ if __name__ == "__main__":
             if CC == 0:
                 print("No customers found")
         else:
-            print("Enter a valid input")
+            print("Invalid option, please try again")
             continue
         while 1:
             proceed_option = input("Do you wish to continue ? (Y / N): ")
